@@ -35,7 +35,7 @@ apt-get $APT_OPTIONS -y -d install xvfb libxss1 unzip | indent
 
 topic "Fetching google chrome"
 CHROME_URL="https://github.com/lepinsk/heroku-buildpack-chrome/releases/download/1.0/google-chrome-unstable_current_amd64.deb"
-curl $CHROME_URL -s -o $APT_CACHE_DIR/archives/google-chrome-stable_current_amd64.deb
+curl $CHROME_URL -s -o $APT_CACHE_DIR/archives/google-chrome-unstable_current_amd64.deb
 
 mkdir -p $BUILD_DIR/.apt
 
