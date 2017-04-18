@@ -34,7 +34,7 @@ topic "Fetching .debs for xvfb and unzip"
 apt-get $APT_OPTIONS -y -d install xvfb unzip | indent
 
 topic "Fetching google chrome"
-CHROME_URL="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+CHROME_URL="https://dl.google.com/linux/direct/google-chrome-unstable_current_amd64.deb"
 curl $CHROME_URL -s -o $APT_CACHE_DIR/archives/google-chrome-stable_current_amd64.deb
 
 mkdir -p $BUILD_DIR/.apt
@@ -58,7 +58,7 @@ mv "$BUILD_DIR/vendor/chromedriver/chromedriver" "$BUILD_DIR/vendor/chromedriver
 topic "exporting PATH and LIBRARY_PATH"
 PROFILE_PATH="$BUILD_DIR/.profile.d/chrome.sh"
 mkdir -p $(dirname $PROFILE_PATH)
-echo 'export PATH=".apt/usr/bin:vendor/chromedriver/bin:$PATH"'>> $PROFILE_PATH
+echo 'export PATH=".apt/usr/bin:vendor/chromedriver/bin:.apt/opt/google/chrome:$PATH"'>> $PROFILE_PATH
 echo 'export LD_LIBRARY_PATH=".apt/usr/lib:\$LD_LIBRARY_PATH"'>> $PROFILE_PATH
 echo 'export INCLUDE_PATH=".apt/usr/include:\$INCLUDE_PATH"'>> $PROFILE_PATH
 echo 'export CPATH="\$INCLUDE_PATH"'>> $PROFILE_PATH
