@@ -34,7 +34,7 @@ topic "Fetching .debs for xvfb, libxss1 and unzip"
 apt-get $APT_OPTIONS -y -d install xvfb libxss1 unzip | indent
 
 topic "Fetching google chrome"
-CHROME_URL="https://dl.google.com/linux/direct/google-chrome-unstable_current_amd64.deb"
+CHROME_URL="https://github.com/lepinsk/heroku-buildpack-chrome/releases/download/1.0/google-chrome-unstable_current_amd64.deb"
 curl $CHROME_URL -s -o $APT_CACHE_DIR/archives/google-chrome-stable_current_amd64.deb
 
 mkdir -p $BUILD_DIR/.apt
@@ -48,12 +48,6 @@ topic "Downloading and installing ChromeDriver to ${BUILD_DIR}"
 mkdir -p "$BUILD_DIR/vendor/chromedriver/"
 mkdir -p "$BUILD_DIR/vendor/chromedriver/bin"
 export PATH="$BUILD_DIR/vendor/chromedriver/bin":$PATH
-
-chromedriver_url="https://chromedriver.storage.googleapis.com/2.9/chromedriver_linux64.zip"
-curl $chromedriver_url -s -o "$BUILD_DIR/vendor/chromedriver/chromedriver.zip"
-unzip "$BUILD_DIR/vendor/chromedriver/chromedriver.zip"
-rm "$BUILD_DIR/vendor/chromedriver/chromedriver.zip"
-mv "$BUILD_DIR/vendor/chromedriver/chromedriver" "$BUILD_DIR/vendor/chromedriver/bin"
 
 topic "exporting PATH and LIBRARY_PATH"
 PROFILE_PATH="$BUILD_DIR/.profile.d/chrome.sh"
